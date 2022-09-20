@@ -1,31 +1,23 @@
 import json
+
 from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import render
 
 
 def main_donate_page(request):
-    # ask_donate = reverse('ask_donate')
-    return HttpResponse(
-        f'''
-        <html>
-          <body>
-            <h3> Ask donation form </h3>
-            <form method='post' action='{reverse("ask_donate")}'>
-            <button type='submit'>Click for ask donate</button>
-            </form>
-            <h3> Make donation form </h3>
-            <form method='post' action='make_donate/'>
-            <label> name </label>
-            <input type='text' name='name'>
-            <label> amount </label>
-            <input type='number' name='amount'>
-            <button type='submit'>Click for make donate</button>
-            </form>
-          </body>
-        </html>
-        '''
-    )
+    context = {
+        'ask_donate': reverse('ask_donate'),
+        'make_donate': reverse('make_donate')
+    }
+    return render(request, 'main.html', context)
+
+
+def list(request):
+    context = {}
+    with open('items.json', 'r') as items:
+        context['items'] = json.load(items)
+    return render(request, 'list.html', context)
 
 
 def ask_donate(request):
@@ -63,7 +55,7 @@ def make_donate(request):
     with open('items.json', 'r') as items:
         items_list = json.load(items)
         item = items_list.append(
-            {'name': request.POST['name'], 'amount': request.POST['amount']}
+            {'name': request.POST['donation_item'], 'amount': request.POST['donation_amount']}
         )
     with open('items.json', 'w') as items:
         json.dump(items_list, items)
