@@ -21,35 +21,16 @@ def list(request):
 
 
 def ask_donate(request):
+    item = None
     with open('items.json', 'r') as items:
         items_list = json.load(items)
 
-    if not items_list:
-        return HttpResponse(
-            f'''
-                        <html>
-                          <body>
-                            <h3> We have nothing for you </h3>
-                            <a href='{reverse("main_page")}'>Back to main page</a>
-                          </body>
-                        </html>
-                        '''
-        )
-    item = items_list.pop()
+    if items_list and request.method == 'POST':
+        item = items_list.pop()
 
-    with open('items.json', 'w') as items:
-        json.dump(items_list, items)
-    return HttpResponse(
-        f'''
-                <html>
-                  <body>
-                    <h3> Please take it </h3>
-                    {item['name']} {item['amount']}
-                    <a href='{reverse("main_page")}'>Back to main page</a>
-                  </body>
-                </html>
-                '''
-    )
+        with open('items.json', 'w') as items:
+            json.dump(items_list, items)
+    return render(request, 'ask_donate_complete.html', {'item': item})
 
 def make_donate(request):
     with open('items.json', 'r') as items:
@@ -59,13 +40,8 @@ def make_donate(request):
         )
     with open('items.json', 'w') as items:
         json.dump(items_list, items)
-    return HttpResponse(
-        f'''
-                    <html>
-                      <body>
-                        <h3> Thanck you </h3>
-                        <a href='{reverse("main_page")}'>Back to main page</a>
-                      </body>
-                    </html>
-                    '''
+    return render(
+        request,
+        'make_donate_complete.html',
+        {'main_page': reverse('main_page')}
     )

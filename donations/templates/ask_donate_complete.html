@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        {% if item %}
+            <div class="container-sm alert alert-secondary card" style="width: 28rem;">
+                <h3> Please take it </h3>
+                {{ item.name }} {{ item.amount }}
+                <a href='/'>Back to main page</a>
+            </div>
+        {% else %}
+            <div class="container-sm alert alert-secondary card" style="width: 28rem;">
+                <h3> We have nothing for you </h3>
+                <a href='/'>Back to main page</a>
+            </div>
+        {% endif %}
+{% endblock %}

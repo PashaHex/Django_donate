@@ -1,47 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Donation</title>
-</head>
-<body >
-<div class="container" style="margin-left: 0">
+{% extends "base.html" %}
 
-  <div class="container-sm alert alert-secondary card" style="width: 28rem;">
-      <h3> Ask donation form </h3>
-      <form method='post' action='{{ ask_donate }}'>
-        <button type="submit" class="btn btn-primary ">Click for ask donate</button>
-     </form>
-  </div>
+{% block content %}
+    <div class="container" >
+
+      <div class="container-sm alert alert-secondary card" style="width: 28rem;">
+          <h3> Ask donation form </h3>
+          <form method='post' action='{{ ask_donate }}'>
+            <button type="submit" class="btn btn-primary ">Click for ask donate</button>
+         </form>
+      </div>
 
 
-  <div class="container-sm alert alert-secondary" style="width: 28rem;">
-      <h3> Make donation form </h3>
-      <form method='post' action='{{ make_donate }}'>
+      <div class="container-sm alert alert-secondary" style="width: 28rem;">
+          <h3> Make donation form </h3>
+          <form method='post' action='{{ make_donate }}'>
 
-          <div class="row mb-33">
-            <label for="donation_item" class="col-sm-2 col-form-label">Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="donation_item" name="donation_item">
-                <div  class="form-text">Enter thing's name</div>
-            </div>
-          </div>
+              <div class="row mb-33">
+                <label for="donation_item" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="donation_item" name="donation_item">
+                    <div  class="form-text">Enter thing's name</div>
+                </div>
+              </div>
 
-          <div class="row mb-33">
-            <label for="donation_amount" class="col-sm-2 col-form-label">Amount</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" id="donation_amount" name="donation_amount">
-                <div class="form-text">Enter amount of things</div>
-            </div>
-          </div>
+              <div class="row mb-33">
+                <label for="donation_amount" class="col-sm-2 col-form-label">Amount</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="donation_amount" name="donation_amount">
+                    <div class="form-text">Enter amount of things</div>
+                </div>
+              </div>
 
-          <button type="submit" class="btn btn-primary">Click for make donate</button>
-      </form>
-  </div>
+              <button type="submit" class="btn btn-primary">Click for make donate</button>
+          </form>
+      </div>
 
+    </div>
 
-
-</div>
-</body>
-</html>
+{% endblock %}

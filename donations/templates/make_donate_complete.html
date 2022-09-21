@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Make donate complete</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
     <div class="container">
-
-
-
-
+         <div class="container-sm alert alert-secondary card" style="width: 28rem;">
+            <h3> Thanck you </h3>
+            <a href='{{ main_page }}'>Back to main page</a>
+         </div>
     </div>
-</body>
-</html>
+{% endblock %}
