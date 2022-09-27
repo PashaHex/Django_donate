@@ -35,7 +35,8 @@ def ask_donate(request):
 def make_donate(request):
     with open('items.json', 'r') as items:
         items_list = json.load(items)
-        item = items_list.append(
+
+    item = items_list.append(
             {'name': request.POST['donation_item'], 'amount': request.POST['donation_amount']}
         )
     with open('items.json', 'w') as items:
