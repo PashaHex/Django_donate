@@ -5,6 +5,9 @@ class Office(models.Model):
     capacity = models.IntegerField()
     occupied = models.IntegerField()
 
+    def __str__(self):
+        return f'{self.name}({self.capacity}, {self.occupied})'
+
 class Item(models.Model):
     name = models.CharField(max_length=100)
     amount = models.IntegerField()
