@@ -14,6 +14,10 @@ def main_donate_page(request):
     }
     return render(request, 'main.html', context)
 
+def donate_comment(request, **kwargs):
+    context = {}
+    return render(request, 'donate_comment.html', context)
+
 
 def list(request):
     context = {'items': Item.objects.all()}
