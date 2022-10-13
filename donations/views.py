@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import render
 
+from Django_projects.forms import DonateCommentForm
 from donations.models import Item
 
 
@@ -15,7 +16,14 @@ def main_donate_page(request):
     return render(request, 'main.html', context)
 
 def donate_comment(request, **kwargs):
-    context = {}
+    if request.method == 'POST':
+        context = {
+            'form': DonateCommentForm(request.POST)
+        }
+    else:
+        context = {
+            'form': DonateCommentForm()
+        }
     return render(request, 'donate_comment.html', context)
 
 
