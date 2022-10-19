@@ -2,7 +2,7 @@ import json
 
 from django.http import HttpResponse
 from django.urls import reverse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from Django_projects.forms import DonateCommentForm
 from donations.models import Item
@@ -16,14 +16,14 @@ def main_donate_page(request):
     return render(request, 'main.html', context)
 
 def donate_comment(request, **kwargs):
+    context = {}
     if request.method == 'POST':
-        context = {
-            'form': DonateCommentForm(request.POST)
-        }
+        form = DonateCommentForm(request.POST)
+        if form.is_valid():
+            return redirect('donations:list')
+        context['form'] = form
     else:
-        context = {
-            'form': DonateCommentForm()
-        }
+        context['form'] = DonateCommentForm()
     return render(request, 'donate_comment.html', context)
 
 
