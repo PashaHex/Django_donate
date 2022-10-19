@@ -10,8 +10,8 @@ from donations.models import Item
 
 def main_donate_page(request):
     context = {
-        'ask_donate': reverse('ask_donate'),
-        'make_donate': reverse('make_donate')
+        'ask_donate': reverse('donations:ask_donate'),
+        'make_donate': reverse('donations:make_donate')
     }
     return render(request, 'main.html', context)
 

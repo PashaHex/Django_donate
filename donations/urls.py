@@ -1,7 +1,7 @@
 from django.urls import path, re_path
 from . import views
 
-# app_name = 'donations'
+app_name = 'donations'
 
 urlpatterns = [
     path('', views.main_donate_page, name='main_page'),
