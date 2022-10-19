@@ -16,7 +16,7 @@
           <tbody>
             {% for item in items %}
             <tr>
-                <td> <a href="{% url 'donations:donate_comment' id=item.id %}"> {{ item.name }} </a> </td>
+              <td> <a href="{% url 'donations:donate_comment' id=item.id %}"> {{ item.name }} </a> </td>
               <td>{{ item.amount }}</td>
               <td>{{ item.state }}</td>
             </tr>
