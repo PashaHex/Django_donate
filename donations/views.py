@@ -51,7 +51,7 @@ def make_donate(request):
     return render(
         request,
         'make_donate_complete.html',
-        {'main_page': reverse('main_page')}
+        {'main_page': reverse('donations:main_page')}
     )
 
 
