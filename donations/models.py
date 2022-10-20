@@ -15,3 +15,16 @@ class Item(models.Model):
         choices=((0, 'Available'), (1, 'Booked')), default=0
     )
     office = models.ForeignKey(Office, on_delete=models.CASCADE, null=True)
+
+
+class Description(models.Model):
+    estimate = models.IntegerField()
+    comment = models.TextField()
+
+    class Meta:
+        abstract = True
+
+
+class ItemDescription(Description):
+    target = models.ForeignKey(Item, on_delete=models.CASCADE)
+

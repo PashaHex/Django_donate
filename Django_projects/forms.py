@@ -3,4 +3,8 @@ from django.core.validators import MinLengthValidator
 
 
 class DonateCommentForm(forms.Form):
-    comment = forms.Field(validators=[MinLengthValidator(5)])
+    comment = forms.Field(
+        validators=[
+            MinLengthValidator(5)
+        ]
+    )

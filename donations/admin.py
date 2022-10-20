@@ -1,7 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from donations.models import Office, Item
+from donations.models import Office, Item, ItemDescription
+
 
 class OfficeAdmin(admin.ModelAdmin):
     fields = ['name', 'capacity', 'occupied']
@@ -15,3 +16,10 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'amount', 'state', 'office')
 
 admin.site.register(Item, ItemAdmin)
+
+
+class ItemDescriptionAdmin(admin.ModelAdmin):
+    fields = ['estimate', 'comment', 'target']
+    list_display = ('estimate', )
+
+admin.site.register(ItemDescription, ItemDescriptionAdmin)
