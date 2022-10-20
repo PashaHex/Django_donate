@@ -1,8 +1,14 @@
 from django import forms
-from django.core.validators import MinLengthValidator
+from django.core.validators import MinLengthValidator, MaxValueValidator, MinValueValidator
 
 
 class DonateCommentForm(forms.Form):
+    estimate = forms.IntegerField(
+        validators=[
+            MaxValueValidator(100),
+            MinValueValidator(1),
+        ]
+    )
     comment = forms.Field(
         validators=[
             MinLengthValidator(5)

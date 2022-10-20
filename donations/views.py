@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 
 from Django_projects.forms import DonateCommentForm
-from donations.models import Item
+from donations.models import Item, ItemDescription
 
 
 def main_donate_page(request):
@@ -20,6 +20,11 @@ def donate_comment(request, **kwargs):
     if request.method == 'POST':
         form = DonateCommentForm(request.POST)
         if form.is_valid():
+            ItemDescription.objects.create(
+                estimate=form.cleaned_data['estimate'],
+                comment=form.cleaned_data['comment'],
+                target_id=kwargs['id']
+            )
             return redirect('donations:list')
         context['form'] = form
     else:
