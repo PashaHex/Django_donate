@@ -33,9 +33,7 @@ def donate_comment(request, **kwargs):
 
 
 def list(request):
-    context = {'items': Item.objects.all()}
-    # with open('items.json', 'r') as items:
-    #     context['items'] = json.load(items)
+    context = {'items': Item.objects.all().prefetch_related('itemdescription_set')}
     return render(request, 'list.html', context)
 
 

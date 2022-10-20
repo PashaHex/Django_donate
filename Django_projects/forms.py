@@ -10,6 +10,7 @@ class DonateCommentForm(forms.Form):
         ]
     )
     comment = forms.Field(
+        widget=forms.Textarea,
         validators=[
             MinLengthValidator(5)
         ]
