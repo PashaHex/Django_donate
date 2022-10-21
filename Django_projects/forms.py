@@ -3,12 +3,14 @@ from django.core.validators import MinLengthValidator, MaxValueValidator, MinVal
 
 
 class DonateCommentForm(forms.Form):
+
     estimate = forms.IntegerField(
         validators=[
             MaxValueValidator(100),
-            MinValueValidator(1),
+            MinValueValidator(1)
         ]
     )
+
     comment = forms.Field(
         widget=forms.Textarea,
         validators=[
