@@ -4,14 +4,15 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import render, redirect
 
-from Django_projects.forms import DonateCommentForm
+from Django_projects.forms import DonateCommentForm, ItemForm
 from donations.models import Item, ItemDescription
 
 
 def main_donate_page(request):
     context = {
         'ask_donate': reverse('donations:ask_donate'),
-        'make_donate': reverse('donations:make_donate')
+        'make_donate': reverse('donations:make_donate'),
+        'item_form': ItemForm(),
     }
     return render(request, 'main.html', context)
 

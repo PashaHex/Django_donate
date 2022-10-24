@@ -1,6 +1,8 @@
 from django import forms
 from django.core.validators import MinLengthValidator, MaxValueValidator, MinValueValidator
 
+from donations.models import Item
+
 
 class DonateCommentForm(forms.Form):
 
@@ -17,3 +19,9 @@ class DonateCommentForm(forms.Form):
             MinLengthValidator(5)
         ]
     )
+
+
+class ItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        exclude = ('state', 'office')
