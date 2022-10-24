@@ -6,6 +6,7 @@
       <div class="container-sm alert alert-secondary card" style="width: 28rem;">
           <h3> Ask donation form </h3>
           <form method='post' action='{{ ask_donate }}'>
+            {% csrf_token %}
             <button type="submit" class="btn btn-primary ">Click for ask donate</button>
          </form>
       </div>
@@ -14,6 +15,7 @@
       <div class="container-sm alert alert-secondary" style="width: 28rem;">
           <h3> Make donation form </h3>
           <form method='post' action='{{ make_donate }}'>
+              {% csrf_token %}
 
               <div class="row mb-33">
                 <label for="donation_item" class="col-sm-2 col-form-label">Name</label>
