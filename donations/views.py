@@ -8,11 +8,11 @@ from Django_projects.forms import DonateCommentForm, ItemForm
 from donations.models import Item, ItemDescription
 
 
-def main_donate_page(request):
+def main_donate_page(request, item_form=None):
     context = {
         'ask_donate': reverse('donations:ask_donate'),
         'make_donate': reverse('donations:make_donate'),
-        'item_form': ItemForm(),
+        'item_form': item_form if item_form else ItemForm(),
     }
     return render(request, 'main.html', context)
 
@@ -47,10 +47,11 @@ def ask_donate(request):
     return render(request, 'ask_donate_complete.html', {'item': item})
 
 def make_donate(request):
-    Item.objects.create(
-        name=request.POST['donation_item'],
-        amount=request.POST['donation_amount']
-    )
+    form = ItemForm(request.POST)
+    if form.is_valid():
+        form.save()
+    else:
+        return main_donate_page(request, form)
 
     return render(
         request,
