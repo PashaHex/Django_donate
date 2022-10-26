@@ -10,10 +10,20 @@ class OfficeAdmin(admin.ModelAdmin):
 
 admin.site.register(Office, OfficeAdmin)
 
+@admin.action(description='Mark selected item as booked')
+def make_booked(modeladmin, request, queryset):
+    queryset.update(state=True)
+
 
 class ItemAdmin(admin.ModelAdmin):
     fields = ['name', 'amount', 'state', 'office']
     list_display = ('name', 'amount', 'state', 'office')
+
+    @admin.action(description='Mark selected item as active')
+    def make_active(self, request, queryset):
+        queryset.update(state=False)
+
+    actions = [make_booked, make_active, ]
 
 admin.site.register(Item, ItemAdmin)
 
