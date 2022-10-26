@@ -1,11 +1,14 @@
 import json
 
 from django.http import HttpResponse
+from django.views import View
 from django.urls import reverse
 from django.shortcuts import render, redirect
+from django.views.generic import TemplateView
+from django.views.generic.list import ListView
 
 from Django_projects.forms import DonateCommentForm, ItemForm
-from donations.models import Item, ItemDescription
+from donations.models import Item, ItemDescription, Office
 
 
 def main_donate_page(request, item_form=None):
@@ -58,6 +61,14 @@ def make_donate(request):
         'make_donate_complete.html',
         {'main_page': reverse('donations:main_page')}
     )
+
+
+class OfficesView(ListView):
+    template_name = "offices_list.html"
+    model = Office
+    context_object_name = 'offices'
+
+    paginate_by = 3
 
 
 
