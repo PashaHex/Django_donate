@@ -5,6 +5,7 @@ app_name = 'donations'
 
 urlpatterns = [
     path('', views.main_donate_page, name='main_page'),
+    path('offices/create', views.CreateOfficesView.as_view(), name='offices_create'),
     path('offices', views.OfficesView.as_view(), name='offices'),
     path('ask_donate/', views.ask_donate, name='ask_donate'),
     path('make_donate/)', views.make_donate, name='make_donate'),

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container" >
+
+      <div class="container-sm alert alert-secondary" style="width: 28rem;">
+          <h3> Create offices form </h3>
+          <form method='post' action='{{ make_donate }}'>
+
+              {% csrf_token %}
+              {{ form | crispy}}
+
+              <button type="submit" class="btn btn-primary">Click for create office</button>
+          </form>
+      </div>
+
+    </div>
+
+{% endblock %}

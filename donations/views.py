@@ -2,9 +2,9 @@ import json
 
 from django.http import HttpResponse
 from django.views import View
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from django.views.generic.list import ListView
 
 from Django_projects.forms import DonateCommentForm, ItemForm
@@ -71,7 +71,11 @@ class OfficesView(ListView):
     paginate_by = 3
 
 
-
+class CreateOfficesView(CreateView):
+    template_name = "create_offices.html"
+    model = Office
+    fields = ('name', 'capacity', 'occupied')
+    success_url = reverse_lazy('donations:offices')
 
 
 
