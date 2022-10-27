@@ -22,7 +22,7 @@ import donations.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('donations/', include('donations.urls')), #namespase='donations'),
+    path('donations/', include('donations.urls', namespace='donations')),
     path('', lambda request: redirect('/donations')),
 ]
 
