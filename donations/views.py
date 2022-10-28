@@ -13,7 +13,7 @@ from donations.models import Item, ItemDescription, Office
 
 def main_donate_page(request, item_form=None):
     context = {
-        'office_form': OfficeForm(data={'office': request.session['office_id']}),
+
         'ask_donate': reverse('donations:ask_donate'),
         'make_donate': reverse('donations:make_donate'),
         'item_form': item_form if item_form else ItemForm(),
