@@ -7,17 +7,26 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, CreateView
 from django.views.generic.list import ListView
 
-from Django_projects.forms import DonateCommentForm, ItemForm
+from Django_projects.forms import DonateCommentForm, ItemForm, OfficeForm
 from donations.models import Item, ItemDescription, Office
 
 
 def main_donate_page(request, item_form=None):
     context = {
+        'office_form': OfficeForm(data={'office': request.session['office_id']}),
         'ask_donate': reverse('donations:ask_donate'),
         'make_donate': reverse('donations:make_donate'),
         'item_form': item_form if item_form else ItemForm(),
     }
     return render(request, 'main.html', context)
+
+
+def set_session_office(request):
+    form = OfficeForm(data=request.POST)
+    if form.is_valid():
+        request.session['office_id'] = form.cleaned_data['office'].id
+    return redirect('donations:main_page')
+
 
 def donate_comment(request, **kwargs):
     context = {}
@@ -52,14 +61,17 @@ def ask_donate(request):
 def make_donate(request):
     form = ItemForm(request.POST)
     if form.is_valid():
-        form.save()
+        item = form.save(commit=False)
+        item.office_id = request.session['office_id']
+        item.save()
+        form.save_m2m()
     else:
         return main_donate_page(request, form)
 
     return render(
         request,
         'make_donate_complete.html',
-        {'main_page': reverse('donations:main_page')}
+        {'item':item, 'main_page': reverse('donations:main_page')}
     )
 
 

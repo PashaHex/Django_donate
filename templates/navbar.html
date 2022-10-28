@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Navbar</title>
 </head>
+{% load crispy_forms_tags %}
 <body>
   <nav class="navbar navbar-dark bg-primary">
     <div class="container-fluid">
@@ -11,6 +12,11 @@
         <a class="navbar-brand" href="{% url 'donations:list' %}">Items List</a>
         <a class="navbar-brand" href="{% url 'donations:offices' %}">Offices List</a>
         <a class="navbar-brand" href="{% url 'donations:offices_create' %}">Create offices</a>
+        <form class="d-flex" role="search" action="{% url 'donations:set_session_office' %}" method="post">
+            {% csrf_token %}
+            {{ office_form | crispy}}
+            <button class="btn btn-outline-success" type="submit">Set</button>
+      </form>
     </div>
   </nav>
 

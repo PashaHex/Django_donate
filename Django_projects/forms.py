@@ -1,7 +1,8 @@
 from django import forms
 from django.core.validators import MinLengthValidator, MaxValueValidator, MinValueValidator
+from django.db.models import F
 
-from donations.models import Item
+from donations.models import Item, Office
 
 
 class DonateCommentForm(forms.Form):
@@ -22,6 +23,26 @@ class DonateCommentForm(forms.Form):
 
 
 class ItemForm(forms.ModelForm):
+
     class Meta:
         model = Item
         exclude = ('state', 'office')
+
+
+class OfficeForm(forms.Form):
+    office = forms.ModelChoiceField(
+        queryset=Office.objects.all()
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+
