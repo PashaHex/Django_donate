@@ -13,10 +13,10 @@ from donations.models import Item, ItemDescription, Office
 
 def main_donate_page(request, item_form=None):
     context = {
-
         'ask_donate': reverse('donations:ask_donate'),
         'make_donate': reverse('donations:make_donate'),
         'item_form': item_form if item_form else ItemForm(),
+        # 'request_enabled': Office.objects['capacity'] > Office.objects['occupied']
     }
     return render(request, 'main.html', context)
 
@@ -31,12 +31,13 @@ def set_session_office(request):
 def donate_comment(request, **kwargs):
     context = {}
     if request.method == 'POST':
-        form = DonateCommentForm(request.POST)
+        form = DonateCommentForm(request.POST, request.FILES)
         if form.is_valid():
             ItemDescription.objects.create(
                 estimate=form.cleaned_data['estimate'],
                 comment=form.cleaned_data['comment'],
-                target_id=kwargs['id']
+                target_id=kwargs['id'],
+                photo=form.files['photo']
             )
             return redirect('donations:list')
         context['form'] = form

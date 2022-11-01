@@ -29,7 +29,19 @@ admin.site.register(Item, ItemAdmin)
 
 
 class ItemDescriptionAdmin(admin.ModelAdmin):
-    fields = ['estimate', 'comment', 'target']
-    list_display = ('estimate', )
+    fields = ['estimate', 'comment', 'target', 'photo']
+    list_display = ('estimate', 'comment', 'photo',)
 
 admin.site.register(ItemDescription, ItemDescriptionAdmin)
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,6 +21,8 @@
               {{ item_form | crispy}}
 
               <button type="submit" class="btn btn-primary">Click for make donate</button>
+
+<!--              <button {% if not request_enabled %} disabled {% endif %} type="submit" class="btn btn-primary">Click for make donate</button>-->
           </form>
       </div>
 

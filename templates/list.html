@@ -20,7 +20,7 @@
                   <a href="{% url 'donations:donate_comment' id=item.id %}"> {{ item.name }} </a>
                   {% for description in item.itemdescription_set.all %}
                       {{ description.estimate }}
-                      {{ description.comment }}
+                      {{ description.comment }} {% if description.photo %} <img style="max-height: 100px;" src="{{ description.photo.url }}"/> {% endif %}
                   {% endfor %}
               </td>
               <td>{{ item.amount }}</td>

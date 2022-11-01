@@ -6,20 +6,19 @@ from donations.models import Item, Office
 
 
 class DonateCommentForm(forms.Form):
-
     estimate = forms.IntegerField(
         validators=[
             MaxValueValidator(100),
             MinValueValidator(1)
         ]
     )
-
     comment = forms.Field(
         widget=forms.Textarea,
         validators=[
             MinLengthValidator(5)
         ]
     )
+    photo = forms.ImageField()
 
 
 class ItemForm(forms.ModelForm):

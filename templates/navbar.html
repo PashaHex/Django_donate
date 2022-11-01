@@ -12,10 +12,10 @@
         <a class="navbar-brand" href="{% url 'donations:list' %}">Items List</a>
         <a class="navbar-brand" href="{% url 'donations:offices' %}">Offices List</a>
         <a class="navbar-brand" href="{% url 'donations:offices_create' %}">Create offices</a>
-        <form class="d-flex" role="search" action="{% url 'donations:set_session_office' %}" method="post">
+        <form class="d-flex" role="search" action="{% url 'donations:set_session_office' %}" method="post" style="color:white">
             {% csrf_token %}
             {{ office_form | crispy}}
-            <button class="btn btn-outline-success" type="submit">Set</button>
+            <button class="btn btn-primary" type="submit">Set</button>
       </form>
     </div>
   </nav>

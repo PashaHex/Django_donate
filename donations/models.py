@@ -20,6 +20,7 @@ class Item(models.Model):
 class Description(models.Model):
     estimate = models.IntegerField()
     comment = models.TextField()
+    photo = models.ImageField(upload_to='description_photo', null=True)
 
     class Meta:
         abstract = True
